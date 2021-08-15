@@ -154,13 +154,22 @@
     <Compile Include="SpecflowPages\Helpers\ConstantHelpers.cs" />
     <Compile Include="SpecflowPages\Helpers\Driver.cs" />
     <Compile Include="SpecflowPages\Helpers\ExcelLibHelper.cs" />
+    <Compile Include="SpecflowPages\Pages\ProfileDetailsPage.cs" />
+    <Compile Include="SpecflowPages\Pages\ProfileSkillsPage.cs" />
+    <Compile Include="SpecflowPages\Pages\ProfileLanguagePage.cs" />
     <Compile Include="SpecflowPages\Pages\SignIn.cs" />
     <Compile Include="SpecflowPages\Utils\Start.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Steps\ProfileDetailsSteps.cs" />
+    <Compile Include="Steps\ProfileLanguageSteps.cs" />
+    <Compile Include="Steps\ProfileSkillsSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Feature\Login.feature" />
+    <None Include="Feature\ProfileDetails.feature" />
+    <None Include="Feature\ProfileSkills.feature" />
+    <None Include="Feature\ProfileLanguage.feature" />
     <None Include="SpecflowTests\Data\Data.xlsx" />
     <None Include="packages.config" />
     <None Include="SpecflowTests\Data\Mars.xlsx" />
