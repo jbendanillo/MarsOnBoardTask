@@ -30,9 +30,11 @@ namespace MarsQA_1.Pages
             AddNewButton.Click();
             Thread.Sleep(3000);
 
-            SkillsInput.SendKeys("C#");
+            ExcelLibHelper.PopulateInCollection(ConstantHelpers.ExcelFile, "Skills");
+
+            SkillsInput.SendKeys(ExcelLibHelper.ReadData(2, "Skills"));
             SelectElement select = new SelectElement(Driver.driver.FindElement(By.XPath("//select[@name ='level']")));
-            select.SelectByValue("Intermediate");
+            select.SelectByValue(ExcelLibHelper.ReadData(2, "SkillsLevel"));
 
             AddButton.Click();
         }
@@ -41,22 +43,24 @@ namespace MarsQA_1.Pages
         {
             Thread.Sleep(3000);
             string skills = Driver.driver.FindElement(By.XPath("//div/table/tbody[1]/tr/td[1]")).Text;
-            Assert.AreEqual("C#", skills);
+            Assert.AreEqual(ExcelLibHelper.ReadData(2, "Skills"), skills);
         }
 
         public static void UserEditsTheirSkillsDetailsAndClicksUpdate()
         {
             Thread.Sleep(3000);
 
+            ExcelLibHelper.PopulateInCollection(ConstantHelpers.ExcelFile, "Skills");
+
             Driver.driver.FindElement(By.XPath("//div/table/tbody[1]/tr/td[3]/span[1]/i")).Click();
 
             IWebElement skillsInput = Driver.driver.FindElement(By.XPath("//div/table/tbody[1]/tr/td/div/div[1]/input"));
             skillsInput.Clear();
-            skillsInput.SendKeys("Java");
+            skillsInput.SendKeys(ExcelLibHelper.ReadData(3, "Skills"));
 
             var skillsLevel = Driver.driver.FindElement(By.XPath("//div/table/tbody[1]/tr/td/div/div[2]/select"));
             var selectElement = new SelectElement(skillsLevel);
-            selectElement.SelectByValue("Beginner");
+            selectElement.SelectByValue(ExcelLibHelper.ReadData(3, "SkillsLevel"));
 
             Thread.Sleep(3000);
             Driver.driver.FindElement(By.XPath("//div/table/tbody[1]/tr/td/div/span/input[1]")).Click();
@@ -67,7 +71,7 @@ namespace MarsQA_1.Pages
         {
             Thread.Sleep(3000);
             string skills = Driver.driver.FindElement(By.XPath("//div/table/tbody[1]/tr/td[1]")).Text;
-            Assert.AreEqual("Java", skills);
+            Assert.AreEqual(ExcelLibHelper.ReadData(3, "Skills"), skills);
         }
 
         public static void UserRemovesTheirSkills()

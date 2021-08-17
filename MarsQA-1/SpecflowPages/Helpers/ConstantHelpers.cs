@@ -11,6 +11,9 @@ namespace MarsQA_1.Helpers
         //Base Url
         public static string Url = "http://localhost:5000";
 
+        //Excel path
+        public static string ExcelFile = @"C:\Users\jeric\source\repos\MVP-Studio\Internship\MarsOnBoardTask\MarsQA-1\SpecflowTests\Data\Mars.xlsx";
+
         //ScreenshotPath
         public static string ScreenshotPath = "";
 

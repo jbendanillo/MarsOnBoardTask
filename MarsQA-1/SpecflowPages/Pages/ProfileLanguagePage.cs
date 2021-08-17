@@ -30,34 +30,37 @@ namespace MarsQA_1.Pages
             AddNewButton.Click();
             Thread.Sleep(3000);
 
-            LanguageInput.SendKeys("English");
+            ExcelLibHelper.PopulateInCollection(ConstantHelpers.ExcelFile, "Language");
+
+            LanguageInput.SendKeys(ExcelLibHelper.ReadData(2, "Language"));
             SelectElement select = new SelectElement(Driver.driver.FindElement(By.XPath("//select[@name ='level']")));
-            select.SelectByValue("Fluent");
+            select.SelectByValue(ExcelLibHelper.ReadData(2, "LanguageLevel"));
 
             AddButton.Click();
-
         }
 
         public static void LanguageDetailsAddedShouldNowBeSaved()
         {
             Thread.Sleep(3000);
             string language = Driver.driver.FindElement(By.XPath("//div/table/tbody[1]/tr/td[1]")).Text;
-            Assert.AreEqual("English", language);
+            Assert.AreEqual(ExcelLibHelper.ReadData(2, "Language"), language);
         }
 
         public static void UserEditsTheirLanguageDetailsAndClicksUpdate()
         {
             Thread.Sleep(3000);
 
+            ExcelLibHelper.PopulateInCollection(ConstantHelpers.ExcelFile, "Language");
+
             Driver.driver.FindElement(By.XPath("//div/table/tbody[1]/tr/td[3]/span[1]/i")).Click();
 
             IWebElement languageInput = Driver.driver.FindElement(By.XPath("//div/table/tbody[1]/tr/td/div/div[1]/input"));
             languageInput.Clear();
-            languageInput.SendKeys("Filipino");
+            languageInput.SendKeys(ExcelLibHelper.ReadData(3, "Language"));
 
             var languageLevel = Driver.driver.FindElement(By.XPath("//div/table/tbody[1]/tr/td/div/div[2]/select"));
             var selectElement = new SelectElement(languageLevel);
-            selectElement.SelectByValue("Basic");
+            selectElement.SelectByValue(ExcelLibHelper.ReadData(3, "LanguageLevel"));
 
             Thread.Sleep(3000);
             Driver.driver.FindElement(By.XPath("//form[1]/div[2]/div[1]/div[2]/div[1]/table[1]/tbody[1]/tr[1]/td[1]/div[1]/span[1]/input[1]")).Click();
@@ -68,7 +71,7 @@ namespace MarsQA_1.Pages
         {
             Thread.Sleep(3000);
             string language = Driver.driver.FindElement(By.XPath("//div/table/tbody[1]/tr/td[1]")).Text;
-            Assert.AreEqual("Filipino", language);
+            Assert.AreEqual(ExcelLibHelper.ReadData(3, "Language"), language);
         }
 
         public static void UserRemovesTheirLanguage()

@@ -26,9 +26,11 @@ namespace MarsQA_1.Pages
 
         public static void UserSelectsOptionFromAvailabilityDropdown()
         {
+            ExcelLibHelper.PopulateInCollection(ConstantHelpers.ExcelFile, "Details");
+
             var availability = Driver.driver.FindElement(By.Name("availabiltyType"));
-            var selectElementh = new SelectElement(availability);
-            selectElementh.SelectByValue("1");
+            var selectElement = new SelectElement(availability);
+            selectElement.SelectByValue(ExcelLibHelper.ReadData(2, "Availability"));
             Thread.Sleep(3000);
         }
 
@@ -41,9 +43,10 @@ namespace MarsQA_1.Pages
         public static void UserSelectsOptionFromHoursDropdown()
         {
             Thread.Sleep(3000);
+            ExcelLibHelper.PopulateInCollection(ConstantHelpers.ExcelFile, "Details");
             var hour = Driver.driver.FindElement(By.Name("availabiltyHour"));
             var selectElement = new SelectElement(hour);
-            selectElement.SelectByValue("1");
+            selectElement.SelectByValue(ExcelLibHelper.ReadData(2, "Hours"));
             Thread.Sleep(3000);
         }
 
@@ -55,9 +58,10 @@ namespace MarsQA_1.Pages
 
         public static void UserSelectsOptionEarnTargetDropdown()
         {
+            ExcelLibHelper.PopulateInCollection(ConstantHelpers.ExcelFile, "Details");
             var earnTarget = Driver.driver.FindElement(By.Name("availabiltyTarget"));
-            var selectElementt = new SelectElement(earnTarget);
-            selectElementt.SelectByValue("1");
+            var selectElement = new SelectElement(earnTarget);
+            selectElement.SelectByValue(ExcelLibHelper.ReadData(2, "EarnTarget"));
             Thread.Sleep(3000);
         }
     }
